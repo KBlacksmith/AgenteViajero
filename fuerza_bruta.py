@@ -33,7 +33,8 @@ def probar_caminos(problema: dict, disp: list, ruta = [])->list:
         ruta.pop()
     return mejor_ruta
 if __name__ == "__main__": 
-    p = problemas.problema_3
+    print("Fuerza bruta")
+    p = problemas.problema_4
     disponibles = [key for key in p]
     inicio = time()
     ruta = probar_caminos(p, disponibles)

@@ -115,7 +115,7 @@ def genetic(problema: dict, n_gen: int, n_pob: int):
                     mejor_solucion_local = h
         poblacion = hijos
         print("Mejor solución\tDistancia")
-        print(mejor_solucion_local+"\t\t"+str(mejor_valor_local))
+        print(mejor_solucion_local+"\t"+str(mejor_valor_local))
         if mejor_valor_local <= mejor_valor: 
             mejor_solucion = mejor_solucion_local
             mejor_valor = mejor_valor_local
@@ -123,9 +123,11 @@ def genetic(problema: dict, n_gen: int, n_pob: int):
     
 
 if __name__=="__main__": 
-    p = problemas.problema_3
+    print("Algoritmo genético")
+    p = problemas.problema_4
     inicio = time()
     solucion = genetic(p, 5, 100)
+    print("-"*5)
     print("Tiempo de ejecución: "+str(time()-inicio))
-    print("Mejor Solucion: " +str(solucion))
+    print("Mejor Solucion: " +str([int(s) for s in solucion]))
     print("Distancia: "+str(calcular_distancia(solucion, p)))

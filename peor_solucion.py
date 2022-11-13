@@ -31,7 +31,8 @@ def probar_caminos(problema: dict, disp: list, ruta = [])->list:
         ruta.pop()
     return peor_ruta
 if __name__ == "__main__": 
-    p = problemas.problema_3
+    print("Peor solucion")
+    p = problemas.problema_4
     disponibles = [key for key in p]
     ruta = probar_caminos(p, disponibles)
     print("Peor ruta: "+str(ruta))

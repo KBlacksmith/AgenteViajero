@@ -31,7 +31,8 @@ def vecino(problema: dict, disponibles: list, inicio: int):
     return ruta
 
 if __name__ == "__main__": 
-    p = problemas.problema_3
+    print("Vecino más cercano")
+    p = problemas.problema_4
     disponibles = [key for key in p]
     inicio = randint(0, len(disponibles)-1)
     print("Punto de partida: "+str(inicio))
