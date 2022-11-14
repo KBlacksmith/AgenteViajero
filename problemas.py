@@ -37,3 +37,71 @@ problema_4 = {
     8: {0: 8, 1: 16, 2: 34, 3: 24, 4: 27, 5: 14, 6: 23, 7: 10, 8: 0, 9: 14},
     9: {0: 15, 1: 10, 2: 35, 3: 29, 4: 36, 5: 25, 6: 35, 7: 16, 8: 14, 9: 0}, 
 }
+
+ejemplo_placa = {
+    "A": {"A": 0, "B": 80, "C": 55, "D": inf, "E": inf, "F": inf, "G": inf, "H": inf, "I": inf, "J": inf, "K": inf, "L": 50}, 
+    "B": {"A": 80, "B": 0, "C": 60, "D": 80, "E": inf, "F": inf, "G": inf, "H": inf, "I": inf, "J": inf, "K": inf, "L": inf}, 
+    "C": {"A": 55, "B": 60, "C": 0, "D": 55, "E": inf, "F": inf, "G": inf, "H": inf, "I": inf, "J": inf, "K": inf, "L": inf}, 
+    "D": {"A": inf, "B": 80, "C": 55, "D": 0, "E": 25, "F": 20, "G": 35, "H": inf, "I": inf, "J": inf, "K": inf, "L": 50}, 
+    "E": {"A": inf, "B": inf, "C": inf, "D": 25, "E": 0, "F": 20, "G": 20, "H": inf, "I": inf, "J": inf, "K": 20, "L": 35}, 
+    "F": {"A": inf, "B": inf, "C": inf, "D": 20, "E": 20, "F": 0, "G": 20, "H": inf, "I": inf, "J": inf, "K": inf, "L": inf}, 
+    "G": {"A": inf, "B": inf, "C": inf, "D": 35, "E": 20, "F": 20, "G": 0, "H": 20, "I": inf, "J": inf, "K": inf, "L": inf}, 
+    "H": {"A": inf, "B": inf, "C": inf, "D": inf, "E": inf, "F": inf, "G": 20, "H": 0, "I": 10, "J": 15, "K": inf, "L": inf}, 
+    "I": {"A": inf, "B": inf, "C": inf, "D": inf, "E": inf, "F": inf, "G": inf, "H": 10, "I": 0, "J": 10, "K": inf, "L": inf}, 
+    "J": {"A": inf, "B": inf, "C": inf, "D": inf, "E": inf, "F": inf, "G": inf, "H": 15, "I": 10, "J": 0, "K": 10, "L": 30}, 
+    "K": {"A": inf, "B": inf, "C": inf, "D": inf, "E": 20, "F": inf, "G": inf, "H": inf, "I": inf, "J": 10, "K": 0, "L": 25}, 
+    "L": {"A": 50, "B": inf, "C": inf, "D": 50, "E": 35, "F": inf, "G": inf, "H": inf, "I": inf, "J": 30, "K": 25, "L": 0}
+}
+
+#for i in ejemplo_placa: 
+#    for j in ejemplo_placa: 
+#        print("i: "+str(i)+", j: "+str(j))
+#        if ejemplo_placa[i][j] != ejemplo_placa[j][i]: 
+#            print("i: "+str(i)+", j: "+str(j))
+
+def calcular_distancia(ruta: list, problema: dict): 
+    if len(ruta) == 0: 
+        return inf
+    distancia = 0
+    nodo_actual = ruta[0]
+    for i in range(len(ruta)-1):
+        distancia += problema[nodo_actual][ruta[i+1]]
+        nodo_actual = ruta[i+1]
+    return distancia
+
+if __name__=="__main__": 
+    from fuerza_bruta import probar_caminos
+    from ramificacion_y_poda import ramificar_y_podar
+    from vecino_mas_cercano import vecino
+    from algoritmo_genetico import genetic
+    from time import time
+    p = ejemplo_placa
+    #print("Fuerza bruta: ")
+    #t = time()
+    #ruta = probar_caminos(p, [key for key in p])
+    #print("Tiempo de ejecución: "+str(time()-t))
+    #print("Solución Óptima: "+str(ruta))
+    #print("Valor Óptimo: "+str(calcular_distancia(ruta, p)))
+    print("-"*5)
+    print("Ramificación y acotamiento: ")
+    t = time()
+    ruta = ramificar_y_podar(p, [key for key in p])
+    print("Tiempo de ejecución: "+str(time()-t))
+    print("Solución Óptima: "+str(ruta))
+    print("Valor Óptimo: "+str(calcular_distancia(ruta, p)))
+
+    print("-"*5)
+    print("Vecino más cercano: ")
+    t = time()
+    ruta = vecino(p, [key for key in p])
+    print("Tiempo de ejecución: "+str(time()-t))
+    print("Solución: "+str(ruta))
+    print("Valor: "+str(calcular_distancia(ruta, p)))
+    
+    print("-"*5)
+    print("Alforitmo genetico: ")
+    t = time()
+    ruta = genetic(p, 5, 100)
+    print("Tiempo de ejecución: "+str(time()-t))
+    print("Solución: "+str(ruta))
+    print("Valor: "+str(calcular_distancia(ruta, p)))

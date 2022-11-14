@@ -10,7 +10,7 @@ def calcular_distancia(ruta: list, problema: dict):
         nodo_actual = ruta[i+1]
     return distancia
 
-def probar_caminos(problema: dict, disp: list, ruta = [])->list:
+def probar_caminos(problema: dict, disp: list, ruta = [], alfa = -inf)->list:
 
     if len(disp) == 0: 
         ruta.append(ruta[0])
@@ -30,9 +30,11 @@ def probar_caminos(problema: dict, disp: list, ruta = [])->list:
             mayor_distancia = distancia
         ruta.pop()
     return peor_ruta
+
+
 if __name__ == "__main__": 
     print("Peor solucion")
-    p = problemas.problema_4
+    p = problemas.ejemplo_placa
     disponibles = [key for key in p]
     ruta = probar_caminos(p, disponibles)
     print("Peor ruta: "+str(ruta))

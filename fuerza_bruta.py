@@ -1,6 +1,4 @@
 from math import inf
-import problemas
-from time import time
 
 def calcular_distancia(ruta: list, problema: dict): 
     distancia = 0
@@ -33,8 +31,10 @@ def probar_caminos(problema: dict, disp: list, ruta = [])->list:
         ruta.pop()
     return mejor_ruta
 if __name__ == "__main__": 
+    import problemas
+    from time import time
     print("Fuerza bruta")
-    p = problemas.problema_4
+    p = problemas.problema_2
     disponibles = [key for key in p]
     inicio = time()
     ruta = probar_caminos(p, disponibles)
